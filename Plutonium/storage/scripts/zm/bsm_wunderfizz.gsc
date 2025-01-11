@@ -1,7 +1,7 @@
-#include maps/mp/zombies/_zm_utility;
-#include common_scripts/utility;
-#include maps/mp/_utility;
-#include scripts/zm/bsm_main;
+#include maps\mp\zombies\_zm_utility;
+#include common_scripts\utility;
+#include maps\mp\_utility;
+#include scripts\zm\bsm_main;
 
 init()
 {
@@ -20,7 +20,7 @@ setupWunderfizz()
 		level.currentWunderfizzLocation = 1;
 	if(isdefined ( level.customMap ) && level.customMap == "trenches")
     {
-		level._effect[ "wunderfizz_loop" ] = loadfx( "maps/zombie_tomb/fx_tomb_dieselmagic_on" );
+		level._effect[ "wunderfizz_loop" ] = loadfx( "maps\zombie_tomb\fx_tomb_dieselmagic_on" );
 		wunderfizzSetup((775, 2545, -126.096), (0,315,0), "p6_zm_vending_diesel_magic");
     	wunderfizzSetup((-252.588, 3710, -295.875), (0,0,0), "p6_zm_vending_diesel_magic");
     	wunderfizzSetup((2975, 5361.24, -367.875), (0,270,0), "p6_zm_vending_diesel_magic");
@@ -235,7 +235,7 @@ wunderfizz(origin, angles, model, cost, perks, trig, wunderfizzBottle )
 								for(;;)
 								{
 									perkForRandom = perks[randomInt(perks.size)];
-									if(!(player hasPerk(perkForRandom) || (player maps/mp/zombies/_zm_perks::has_perk_paused(perkForRandom))))
+									if(!(player hasPerk(perkForRandom) || (player maps\mp\zombies\_zm_perks::has_perk_paused(perkForRandom))))
 									{
 										if(level.script == "zm_tomb")
 										{
@@ -298,7 +298,7 @@ wunderfizz(origin, angles, model, cost, perks, trig, wunderfizzBottle )
 								perklist = array_randomize(perks);
 								for(j=0;j<perklist.size;j++)
 								{
-									if(!(player hasPerk(perklist[j]) || (self maps/mp/zombies/_zm_perks::has_perk_paused(perklist[j]))))
+									if(!(player hasPerk(perklist[j]) || (self maps\mp\zombies\_zm_perks::has_perk_paused(perklist[j]))))
 									{
 										perkName = getPerkName(perklist[j]);
 										if(level.script == "zm_tomb")
@@ -463,16 +463,16 @@ wunderfizzSounds()
 
 givePerk(perk)
 {
-	if(!(self hasPerk(perk) || (self maps/mp/zombies/_zm_perks::has_perk_paused(perk))))
+	if(!(self hasPerk(perk) || (self maps\mp\zombies\_zm_perks::has_perk_paused(perk))))
 	{
 		self.isDrinkingPerk = 1;
-		gun = self maps/mp/zombies/_zm_perks::perk_give_bottle_begin(perk);
+		gun = self maps\mp\zombies\_zm_perks::perk_give_bottle_begin(perk);
         evt = self waittill_any_return("fake_death", "death", "player_downed", "weapon_change_complete");
         if (evt == "weapon_change_complete")
-        self thread maps/mp/zombies/_zm_perks::wait_give_perk(perk, 1);
-       	self maps/mp/zombies/_zm_perks::perk_give_bottle_end(gun, perk);
+        self thread maps\mp\zombies\_zm_perks::wait_give_perk(perk, 1);
+       	self maps\mp\zombies\_zm_perks::perk_give_bottle_end(gun, perk);
        	self.isDrinkingPerk = 0;
-    	if (self maps/mp/zombies/_zm_laststand::player_is_in_laststand() || isDefined(self.intermission) && self.intermission)
+    	if (self maps\mp\zombies\_zm_laststand::player_is_in_laststand() || isDefined(self.intermission) && self.intermission)
         	return;
     	self notify("burp");
 	}

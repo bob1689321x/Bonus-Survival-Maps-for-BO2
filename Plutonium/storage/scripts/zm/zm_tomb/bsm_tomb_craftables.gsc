@@ -1,23 +1,23 @@
-#include maps/mp/zombies/_zm_equipment;
-#include maps/mp/zombies/_zm_ai_quadrotor;
-#include maps/mp/zombies/_zm_zonemgr;
-#include maps/mp/zombies/_zm_audio;
-#include maps/mp/zombies/_zm_unitrigger;
-#include maps/mp/zm_tomb_vo;
-#include maps/mp/zm_tomb_main_quest;
-#include maps/mp/zm_tomb_utility;
-#include maps/mp/zombies/_zm_weapons;
-#include maps/mp/zombies/_zm_utility;
-#include maps/mp/zombies/_zm_craftables;
-#include maps/mp/_utility;
-#include common_scripts/utility;
-#include maps/mp/zm_tomb_craftables;
+#include maps\mp\zombies\_zm_equipment;
+#include maps\mp\zombies\_zm_ai_quadrotor;
+#include maps\mp\zombies\_zm_zonemgr;
+#include maps\mp\zombies\_zm_audio;
+#include maps\mp\zombies\_zm_unitrigger;
+#include maps\mp\zm_tomb_vo;
+#include maps\mp\zm_tomb_main_quest;
+#include maps\mp\zm_tomb_utility;
+#include maps\mp\zombies\_zm_weapons;
+#include maps\mp\zombies\_zm_utility;
+#include maps\mp\zombies\_zm_craftables;
+#include maps\mp\_utility;
+#include common_scripts\utility;
+#include maps\mp\zm_tomb_craftables;
 
 main()
 {
 	if(GetDvar("customMap") == "vanilla")
 		return;
-	replacefunc(maps/mp/zm_tomb_craftables::init_craftables, ::init_craftables);
+	replacefunc(maps\mp\zm_tomb_craftables::init_craftables, ::init_craftables);
 }
 
 init_craftables() //checked changed to match cerberus output

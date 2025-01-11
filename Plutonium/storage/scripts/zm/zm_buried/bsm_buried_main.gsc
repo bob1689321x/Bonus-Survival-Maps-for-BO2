@@ -1,13 +1,13 @@
-#include maps/mp/zombies/_zm_utility;
-#include maps/mp/_utility;
-#include common_scripts/utility;
-#include maps/mp/zm_buried_classic;
+#include maps\mp\zombies\_zm_utility;
+#include maps\mp\_utility;
+#include common_scripts\utility;
+#include maps\mp\zm_buried_classic;
 
 main()
 {
 	if(getDvar("customMap") == "vanilla")
 		return;
-	replacefunc(maps/mp/zm_buried_classic::zm_treasure_chest_init, ::zm_treasure_chest_init);
+	replacefunc(maps\mp\zm_buried_classic::zm_treasure_chest_init, ::zm_treasure_chest_init);
 }
 
 init()
@@ -31,7 +31,7 @@ maze_reset()
 		if((level.round_number % 5) == 0)
 		{
 			level waittill("between_round_over");
-			maps/mp/zm_buried_maze::maze_do_perm_change();
+			maps\mp\zm_buried_maze::maze_do_perm_change();
 		}
 	}
 }

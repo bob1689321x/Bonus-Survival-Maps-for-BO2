@@ -1,15 +1,15 @@
-#include maps/mp/zombies/_zm_utility;
-#include common_scripts/utility;
-#include maps/mp/_utility;
-#include maps/mp/zombies/_zm_spawner;
-#include maps/mp/zombies/_zm_ai_ghost;
+#include maps\mp\zombies\_zm_utility;
+#include common_scripts\utility;
+#include maps\mp\_utility;
+#include maps\mp\zombies\_zm_spawner;
+#include maps\mp\zombies\_zm_ai_ghost;
 
 main()
 {
 	if(GetDvar("zeGamemode") != "survival")
 		return;
-	replacefunc(maps/mp/zombies/_zm_ai_ghost::ghost_round_think, ::ghost_round_think);
-	replacefunc(maps/mp/zombies/_zm_ai_ghost::init_ghost_spawners, ::init_ghost_spawners);
+	replacefunc(maps\mp\zombies\_zm_ai_ghost::ghost_round_think, ::ghost_round_think);
+	replacefunc(maps\mp\zombies\_zm_ai_ghost::init_ghost_spawners, ::init_ghost_spawners);
 }
 
 init_ghost_spawners()
@@ -38,7 +38,7 @@ prespawn()
 {
 	self endon( "death" );
 	level endon( "intermission" );
-	self maps/mp/zombies/_zm_ai_ghost_ffotd::prespawn_start();
+	self maps\mp\zombies\_zm_ai_ghost_ffotd::prespawn_start();
 	self.startinglocation = self.origin;
 	self.animname = "ghost_zombie";
 	self.audio_type = "ghost";
@@ -86,26 +86,26 @@ prespawn()
 	self bloodimpact( "none" );
 	self disableaimassist();
 	self.forcemovementscriptstate = 0;
-	self maps/mp/zombies/_zm_spawner::zombie_setup_attack_properties();
+	self maps\mp\zombies\_zm_spawner::zombie_setup_attack_properties();
 	if ( isDefined( self.is_spawned_in_ghost_zone ) && self.is_spawned_in_ghost_zone )
 	{
 		self.pathenemyfightdist = 0;
 	}
-	self maps/mp/zombies/_zm_spawner::zombie_complete_emerging_into_playable_area();
+	self maps\mp\zombies\_zm_spawner::zombie_complete_emerging_into_playable_area();
 	self setfreecameralockonallowed( 0 );
 	self.startinglocation = self.origin;
 	if ( isDefined( level.ghost_custom_think_logic ) )
 	{
 		self [[ level.ghost_custom_think_logic ]]();
 	}
-	self.bad_path_failsafe = maps/mp/zombies/_zm_ai_ghost_ffotd::ghost_bad_path_failsafe;
+	self.bad_path_failsafe = maps\mp\zombies\_zm_ai_ghost_ffotd::ghost_bad_path_failsafe;
 	self thread ghost_think();
 	self.attack_time = 0;
 	self.ignore_inert = 1;
 	self.subwoofer_burst_func = ::subwoofer_burst_func;
 	self.subwoofer_fling_func = ::subwoofer_fling_func;
 	self.subwoofer_knockdown_func = ::subwoofer_knockdown_func;
-	self maps/mp/zombies/_zm_ai_ghost_ffotd::prespawn_end();
+	self maps\mp\zombies\_zm_ai_ghost_ffotd::prespawn_end();
 }
 
 ghost_death_func()
@@ -127,7 +127,7 @@ ghost_death_func()
 	qrate = self getclientfield( "anim_rate" );
 	self setanimstatefromasd( "zm_death" );
 	self thread wait_ghost_ghost( self getanimlengthfromasd( "zm_death", 0 ) );
-	maps/mp/animscripts/zm_shared::donotetracks( "death_anim" );
+	maps\mp\animscripts\zm_shared::donotetracks( "death_anim" );
 	if ( isDefined( self.is_spawned_in_ghost_zone ) && self.is_spawned_in_ghost_zone )
 	{
 		level.zombie_ghost_count--;
@@ -157,8 +157,8 @@ ghost_death_func()
 	}
 	if ( isDefined( player ) )
 	{
-		player maps/mp/zombies/_zm_stats::increment_client_stat( "buried_ghost_killed", 0 );
-		player maps/mp/zombies/_zm_stats::increment_player_stat( "buried_ghost_killed" );
+		player maps\mp\zombies\_zm_stats::increment_client_stat( "buried_ghost_killed", 0 );
+		player maps\mp\zombies\_zm_stats::increment_player_stat( "buried_ghost_killed" );
 	}
 	self delete();
 	return 1;
@@ -241,7 +241,7 @@ find_ghost_spawn(player)
 	while(1)
 	{
 		point = level.zombie_spawn_locations[RandomInt(level.zombie_spawn_locations.size-1)];
-		if(!player maps/mp/zombies/_zm_zonemgr::is_player_in_zone(point.zone_name) || point.script_string != "find_flesh")
+		if(!player maps\mp\zombies\_zm_zonemgr::is_player_in_zone(point.zone_name) || point.script_string != "find_flesh")
 			continue;
 		else
 			return point;
@@ -309,7 +309,7 @@ ghost_round_aftermath()
 	level waittill("last_ghost_down");
 	level notify( "ghost_round_ending" );
 	power_up_origin = level.ghost_round_last_ghost_origin;
-	level thread maps/mp/zombies/_zm_powerups::specific_powerup_drop( "full_ammo", power_up_origin );
+	level thread maps\mp\zombies\_zm_powerups::specific_powerup_drop( "full_ammo", power_up_origin );
 	wait 2;
 	level.ghost_intermission = 0;
 	level.zombie_ghost_round_states.is_started = 0;

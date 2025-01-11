@@ -1,15 +1,15 @@
-#include maps/mp/zombies/_zm_utility;
-#include maps/mp/_utility;
-#include common_scripts/utility;
-#include maps/mp/zm_buried_classic;
-#include maps/mp/zm_buried_fountain;
+#include maps\mp\zombies\_zm_utility;
+#include maps\mp\_utility;
+#include common_scripts\utility;
+#include maps\mp\zm_buried_classic;
+#include maps\mp\zm_buried_fountain;
 
 main()
 {
 	if(getDvar("customMap") == "vanilla")
 		return;
-	replacefunc(maps/mp/zm_buried_fountain::maze_fountain_think, ::maze_fountain_think);
-	replacefunc(maps/mp/zm_buried_fountain::transport_player_to_start_zone, ::transport_player_to_start_zone);
+	replacefunc(maps\mp\zm_buried_fountain::maze_fountain_think, ::maze_fountain_think);
+	replacefunc(maps\mp\zm_buried_fountain::transport_player_to_start_zone, ::transport_player_to_start_zone);
 }
 
 maze_fountain_think()
@@ -70,10 +70,10 @@ transport_player_to_start_zone()
 	wait_network_frame();
 	self play_teleport_fx();
 	self thread flash_screen_fade_out();
-	self maps/mp/zm_buried_classic::buried_set_start_area_lighting();
-	self thread maps/mp/zombies/_zm_ai_ghost::behave_after_fountain_transport( self );
-	self maps/mp/zombies/_zm_stats::increment_client_stat( "buried_fountain_transporter_used", 0 );
-	self maps/mp/zombies/_zm_stats::increment_player_stat( "buried_fountain_transporter_used" );
+	self maps\mp\zm_buried_classic::buried_set_start_area_lighting();
+	self thread maps\mp\zombies\_zm_ai_ghost::behave_after_fountain_transport( self );
+	self maps\mp\zombies\_zm_stats::increment_client_stat( "buried_fountain_transporter_used", 0 );
+	self maps\mp\zombies\_zm_stats::increment_player_stat( "buried_fountain_transporter_used" );
 	self notify( "player_used_fountain_teleporter" );
 	wait_network_frame();
 	wait_network_frame();

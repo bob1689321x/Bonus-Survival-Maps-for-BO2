@@ -1,51 +1,50 @@
-#include maps/mp/zombies/_zm_chugabud;
-#include maps/mp/zombies/_zm_unitrigger;
-#include maps/mp/zombies/_zm_equipment;
-#include character/c_highrise_player_reporter;
-#include character/c_highrise_player_engineer;
-#include character/c_highrise_player_oldman;
-#include character/c_highrise_player_farmgirl;
-#include maps/mp/zombies/_zm_perks;
-#include maps/mp/zombies/_zm_audio;
-#include maps/mp/zombies/_zm_buildables;
-#include maps/mp/zombies/_zm_devgui;
-#include maps/mp/gametypes_zm/_zm_gametype;
-#include maps/mp/zombies/_zm_laststand;
-#include maps/mp/zm_highrise_distance_tracking;
-#include maps/mp/zombies/_zm_zonemgr;
-#include maps/mp/zm_highrise_achievement;
-#include maps/mp/zombies/_zm_weap_tazer_knuckles;
-#include maps/mp/zombies/_zm_weap_slipgun;
-#include maps/mp/zombies/_zm_weap_ballistic_knife;
-#include maps/mp/zombies/_zm_weap_claymore;
-#include maps/mp/zombies/_zm_weap_cymbal_monkey;
-#include maps/mp/zombies/_zm_weap_bowie;
-#include maps/mp/_sticky_grenade;
-#include maps/mp/zm_highrise;
-#include maps/mp/zombies/_zm_ai_leaper;
-#include maps/mp/zm_highrise_classic;
-#include maps/mp/gametypes_zm/_spawning;
-#include maps/mp/zombies/_load;
-#include maps/mp/zm_highrise_elevators;
-#include maps/mp/zm_highrise_amb;
-#include maps/mp/animscripts/zm_death;
-#include maps/mp/zombies/_zm;
-#include maps/mp/zm_highrise_utility;
-#include maps/mp/zm_highrise_ffotd;
-#include maps/mp/zm_highrise_fx;
-#include maps/mp/zombies/_zm_banking;
-#include maps/mp/zm_highrise_sq;
-#include maps/mp/zm_highrise_gamemodes;
-#include maps/mp/zombies/_zm_weapon_locker;
-#include maps/mp/zombies/_zm_weapons;
-#include maps/mp/zombies/_zm_utility;
-#include maps/mp/_utility;
-#include common_scripts/utility;
-#include maps/mp/zm_highrise;
+#include maps\mp\zombies\_zm_chugabud;
+#include maps\mp\zombies\_zm_unitrigger;
+#include maps\mp\zombies\_zm_equipment;
+#include character\c_highrise_player_reporter;
+#include character\c_highrise_player_engineer;
+#include character\c_highrise_player_oldman;
+#include character\c_highrise_player_farmgirl;
+#include maps\mp\zombies\_zm_perks;
+#include maps\mp\zombies\_zm_audio;
+#include maps\mp\zombies\_zm_buildables;
+#include maps\mp\zombies\_zm_devgui;
+#include maps\mp\gametypes_zm\_zm_gametype;
+#include maps\mp\zombies\_zm_laststand;
+#include maps\mp\zm_highrise_distance_tracking;
+#include maps\mp\zombies\_zm_zonemgr;
+#include maps\mp\zm_highrise_achievement;
+#include maps\mp\zombies\_zm_weap_tazer_knuckles;
+#include maps\mp\zombies\_zm_weap_slipgun;
+#include maps\mp\zombies\_zm_weap_ballistic_knife;
+#include maps\mp\zombies\_zm_weap_claymore;
+#include maps\mp\zombies\_zm_weap_cymbal_monkey;
+#include maps\mp\zombies\_zm_weap_bowie;
+#include maps\mp\_sticky_grenade;
+#include maps\mp\zm_highrise;
+#include maps\mp\zombies\_zm_ai_leaper;
+#include maps\mp\zm_highrise_classic;
+#include maps\mp\gametypes_zm\_spawning;
+#include maps\mp\zombies\_load;
+#include maps\mp\zm_highrise_elevators;
+#include maps\mp\zm_highrise_amb;
+#include maps\mp\animscripts\zm_death;
+#include maps\mp\zombies\_zm;
+#include maps\mp\zm_highrise_utility;
+#include maps\mp\zm_highrise_ffotd;
+#include maps\mp\zm_highrise_fx;
+#include maps\mp\zombies\_zm_banking;
+#include maps\mp\zm_highrise_sq;
+#include maps\mp\zm_highrise_gamemodes;
+#include maps\mp\zombies\_zm_weapon_locker;
+#include maps\mp\zombies\_zm_weapons;
+#include maps\mp\zombies\_zm_utility;
+#include maps\mp\_utility;
+#include common_scripts\utility;
 
 main()
 {
-	replacefunc(maps/mp/zm_highrise::setup_leapers, ::setup_leapers_custom);
+	replacefunc(maps\mp\zm_highrise::setup_leapers, ::setup_leapers_custom);
 }
 
 init()
@@ -70,7 +69,7 @@ setup_leapers_custom() //checked matches cerberus output dvar not found
 	else
 	{
 		if(isdefined(level.customMap) && level.customMap == "vanilla")
-			maps/mp/zombies/_zm_ai_leaper::enable_leaper_rounds();
+			maps\mp\zombies\_zm_ai_leaper::enable_leaper_rounds();
 	}
 	level.leapers_per_player = 6;
 }
@@ -83,7 +82,7 @@ elevators()
 		foreach(elevator in level.elevators)
 		{
 			elevator.body.lock_doors = 1;
-			elevator.body maps/mp/zm_highrise_elevators::perkelevatordoor(0);
+			elevator.body maps\mp\zm_highrise_elevators::perkelevatordoor(0);
 		}
 	}
 }

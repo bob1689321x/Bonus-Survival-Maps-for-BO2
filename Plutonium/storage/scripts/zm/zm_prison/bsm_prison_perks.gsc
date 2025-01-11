@@ -1,27 +1,27 @@
-#include maps/mp/zombies/_zm;
-#include maps/mp/zombies/_zm_perks;
-#include maps/mp/_visionset_mgr;
-#include maps/mp/zombies/_zm_score;
-#include maps/mp/zombies/_zm_stats;
-#include maps/mp/_demo;
-#include maps/mp/zombies/_zm_audio;
-#include maps/mp/zombies/_zm_pers_upgrades_functions;
-#include maps/mp/zombies/_zm_power;
-#include maps/mp/zombies/_zm_laststand;
-#include maps/mp/zombies/_zm_weapons;
-#include maps/mp/zombies/_zm_utility;
-#include maps/mp/_utility;
-#include common_scripts/utility;
-#include maps/mp/zombies/_zm_magicbox;
+#include maps\mp\zombies\_zm;
+#include maps\mp\zombies\_zm_perks;
+#include maps\mp\_visionset_mgr;
+#include maps\mp\zombies\_zm_score;
+#include maps\mp\zombies\_zm_stats;
+#include maps\mp\_demo;
+#include maps\mp\zombies\_zm_audio;
+#include maps\mp\zombies\_zm_pers_upgrades_functions;
+#include maps\mp\zombies\_zm_power;
+#include maps\mp\zombies\_zm_laststand;
+#include maps\mp\zombies\_zm_weapons;
+#include maps\mp\zombies\_zm_utility;
+#include maps\mp\_utility;
+#include common_scripts\utility;
+#include maps\mp\zombies\_zm_magicbox;
 
 main()
 {
 	if(GetDvar("customMap") == "vanilla")
 		return;
-	replacefunc(maps/mp/zombies/_zm_perks::perks_register_clientfield, ::perks_register_clientfield); 
-	replacefunc(maps/mp/zombies/_zm_perks::set_perk_clientfield, ::set_perk_clientfield);
-	replacefunc(maps/mp/zombies/_zm_perks::perk_machine_spawn_init, ::perk_machine_spawn_init);
-	replacefunc(maps/mp/zombies/_zm_perks::init, ::perks_init);
+	replacefunc(maps\mp\zombies\_zm_perks::perks_register_clientfield, ::perks_register_clientfield); 
+	replacefunc(maps\mp\zombies\_zm_perks::set_perk_clientfield, ::set_perk_clientfield);
+	replacefunc(maps\mp\zombies\_zm_perks::perk_machine_spawn_init, ::perk_machine_spawn_init);
+	replacefunc(maps\mp\zombies\_zm_perks::init, ::perks_init);
 	if(GetDvar("customMap") != "rooftop")
 	{
 		level.zombiemode_using_marathon_perk = 1;
@@ -29,8 +29,8 @@ main()
 	}
 	level.zombiemode_using_additionalprimaryweapon_perk = 1;
 	level.zombiemode_using_divetonuke_perk = 1;
-	replacefunc(maps/mp/zombies/_zm_perk_divetonuke::enable_divetonuke_perk_for_level, scripts/zm/zm_prison/bsm_prison_perk_phd::enable_divetonuke_perk_for_level);
-	maps/mp/zombies/_zm_perk_divetonuke::enable_divetonuke_perk_for_level();
+	replacefunc(maps\mp\zombies\_zm_perk_divetonuke::enable_divetonuke_perk_for_level, scripts\zm\zm_prison\bsm_prison_perk_phd::enable_divetonuke_perk_for_level);
+	maps\mp\zombies\_zm_perk_divetonuke::enable_divetonuke_perk_for_level();
 	precacheShader( "specialty_additionalprimaryweapon_zombies" );
 	precacheShader( "specialty_divetonuke_zombies" );
 	precacheShader( "specialty_juggernaut_zombies" );
@@ -176,7 +176,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precachemodel( "p6_anim_zm_buildable_pap_on" );
 		precachestring( &"ZOMBIE_PERK_PACKAPUNCH" );
 		precachestring( &"ZOMBIE_PERK_PACKAPUNCH_ATT" );
-		level._effect[ "packapunch_fx" ] = loadfx( "maps/zombie/fx_zombie_packapunch" );
+		level._effect[ "packapunch_fx" ] = loadfx( "maps\zombie\fx_zombie_packapunch" );
 		level.machine_assets[ "packapunch" ] = spawnstruct();
 		level.machine_assets[ "packapunch" ].weapon = "zombie_knuckle_crack";
 		level.machine_assets[ "packapunch" ].off_model = "p6_zm_al_vending_pap_on";
@@ -190,7 +190,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precacheshader( "specialty_additionalprimaryweapon_zombies" );
 		precachemodel( "p6_zm_al_vending_three_gun_on" );
 		precachestring( &"ZOMBIE_PERK_ADDITIONALWEAPONPERK" );
-		level._effect[ "additionalprimaryweapon_light" ] = loadfx( "maps/zombie_alcatraz/fx_alcatraz_perk_smk" );
+		level._effect[ "additionalprimaryweapon_light" ] = loadfx( "maps\zombie_alcatraz\fx_alcatraz_perk_smk" );
 		level.machine_assets[ "additionalprimaryweapon" ] = spawnstruct();
 		level.machine_assets[ "additionalprimaryweapon" ].weapon = "zombie_perk_bottle_sleight";
 		level.machine_assets[ "additionalprimaryweapon" ].off_model = "p6_zm_al_vending_three_gun_on";
@@ -204,7 +204,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precacheshader( "specialty_ads_zombies" );
 		precachemodel( "p6_zm_al_vending_ads_on" );
 		precachestring( &"ZOMBIE_PERK_DEADSHOT" );
-		level._effect[ "deadshot_light" ] = loadfx( "maps/zombie_alcatraz/fx_alcatraz_perk_smk" );
+		level._effect[ "deadshot_light" ] = loadfx( "maps\zombie_alcatraz\fx_alcatraz_perk_smk" );
 		level.machine_assets[ "deadshot" ] = spawnstruct();
 		level.machine_assets[ "deadshot" ].weapon = "zombie_perk_bottle_deadshot";
 		level.machine_assets[ "deadshot" ].off_model = "p6_zm_al_vending_ads_on";
@@ -218,7 +218,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precacheshader( "specialty_divetonuke_zombies" );
 		precachemodel( "p6_zm_al_vending_nuke_on" );
 		//precachestring( &"ZOMBIE_PERK_DIVETONUKE" );
-		//level._effect[ "divetonuke_light" ] = loadfx( "maps/zombie_alcatraz/fx_alcatraz_perk_smk" );
+		//level._effect[ "divetonuke_light" ] = loadfx( "maps\zombie_alcatraz\fx_alcatraz_perk_smk" );
 		level.machine_assets[ "divetonuke" ] = spawnstruct();
 		level.machine_assets[ "divetonuke" ].weapon = "zombie_perk_bottle_deadshot";
 		level.machine_assets[ "divetonuke" ].off_model = "p6_zm_al_vending_nuke_on";
@@ -232,7 +232,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precacheshader( "specialty_doubletap_zombies" );
 		precachemodel( "p6_zm_al_vending_doubletap2_on" );
 		precachestring( &"ZOMBIE_PERK_DOUBLETAP" );
-		level._effect[ "doubletap_light" ] = loadfx( "maps/zombie_alcatraz/fx_alcatraz_perk_smk" );
+		level._effect[ "doubletap_light" ] = loadfx( "maps\zombie_alcatraz\fx_alcatraz_perk_smk" );
 		level.machine_assets[ "doubletap" ] = spawnstruct();
 		level.machine_assets[ "doubletap" ].weapon = "zombie_perk_bottle_doubletap";
 		level.machine_assets[ "doubletap" ].off_model = "p6_zm_al_vending_doubletap2_on";
@@ -246,7 +246,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precacheshader( "specialty_juggernaut_zombies" );
 		precachemodel( "p6_zm_al_vending_jugg_on" );
 		precachestring( &"ZOMBIE_PERK_JUGGERNAUT" );
-		level._effect[ "jugger_light" ] = loadfx( "maps/zombie_alcatraz/fx_alcatraz_perk_smk" );
+		level._effect[ "jugger_light" ] = loadfx( "maps\zombie_alcatraz\fx_alcatraz_perk_smk" );
 		level.machine_assets[ "juggernog" ] = spawnstruct();
 		level.machine_assets[ "juggernog" ].weapon = "zombie_perk_bottle_jugg";
 		level.machine_assets[ "juggernog" ].off_model = "p6_zm_al_vending_jugg_on";
@@ -258,7 +258,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 	{
 		precachestring( &"ZOMBIE_PERK_MARATHON" );
 		precacheshader("specialty_doublepoints_zombies");
-		//level._effect[ "marathon_light" ] = loadfx( "maps/zombie/fx_alcatraz_perk_smk" );
+		//level._effect[ "marathon_light" ] = loadfx( "maps\zombie\fx_alcatraz_perk_smk" );
 		level.machine_assets[ "marathon" ] = spawnstruct();
 		level.machine_assets[ "marathon" ].weapon = "zombie_perk_bottle_doubletap";
 		level.machine_assets[ "marathon" ].off_model = "p6_zm_al_vending_doubletap2_on";
@@ -270,8 +270,8 @@ custom_vending_precaching() //checked changed to match cerberus output
 		//precachemodel( "zombie_vending_revive" );
 		//precachemodel( "zombie_vending_revive_on" );
 		precachestring( &"ZOMBIE_PERK_QUICKREVIVE" );
-		//level._effect[ "revive_light" ] = loadfx( "misc/fx_zombie_cola_revive_on" );
-		//level._effect[ "revive_light_flicker" ] = loadfx( "maps/zombie/fx_zmb_cola_revive_flicker" );
+		//level._effect[ "revive_light" ] = loadfx( "misc\fx_zombie_cola_revive_on" );
+		//level._effect[ "revive_light_flicker" ] = loadfx( "maps\zombie\fx_zmb_cola_revive_flicker" );
 		level.machine_assets[ "revive" ] = spawnstruct();
 		level.machine_assets[ "revive" ].weapon = "zombie_perk_bottle_cherry";
 		level.machine_assets[ "revive" ].off_model = "p6_zm_vending_electric_cherry_off";
@@ -283,7 +283,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precacheshader( "specialty_fastreload_zombies" );
 		precachemodel( "p6_zm_al_vending_sleight_on" );
 		precachestring( &"ZOMBIE_PERK_FASTRELOAD" );
-		level._effect[ "sleight_light" ] = loadfx( "maps/zombie_alcatraz/fx_alcatraz_perk_smk" );
+		level._effect[ "sleight_light" ] = loadfx( "maps\zombie_alcatraz\fx_alcatraz_perk_smk" );
 		level.machine_assets[ "speedcola" ] = spawnstruct();
 		level.machine_assets[ "speedcola" ].weapon = "zombie_perk_bottle_sleight";
 		level.machine_assets[ "speedcola" ].off_model = "p6_zm_al_vending_sleight_on";
@@ -299,7 +299,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precachemodel( "zombie_vending_tombstone_on" );
 		precachemodel( "ch_tombstone1" );
 		precachestring( &"ZOMBIE_PERK_TOMBSTONE" );
-		level._effect[ "tombstone_light" ] = loadfx( "misc/fx_zombie_cola_on" );
+		level._effect[ "tombstone_light" ] = loadfx( "misc\fx_zombie_cola_on" );
 		level.machine_assets[ "tombstone" ] = spawnstruct();
 		level.machine_assets[ "tombstone" ].weapon = "zombie_perk_bottle_tombstone";
 		level.machine_assets[ "tombstone" ].off_model = "zombie_vending_tombstone";
@@ -313,7 +313,7 @@ custom_vending_precaching() //checked changed to match cerberus output
 		precachemodel( "p6_zm_vending_chugabud_on" );
 		precachemodel( "ch_tombstone1" );
 		precachestring( &"ZOMBIE_PERK_TOMBSTONE" );
-		level._effect[ "tombstone_light" ] = loadfx( "misc/fx_zombie_cola_on" );
+		level._effect[ "tombstone_light" ] = loadfx( "misc\fx_zombie_cola_on" );
 		level.machine_assets[ "whoswho" ] = spawnstruct();
 		level.machine_assets[ "whoswho" ].weapon = "zombie_perk_bottle_whoswho";
 		level.machine_assets[ "whoswho" ].off_model = "p6_zm_vending_chugabud";

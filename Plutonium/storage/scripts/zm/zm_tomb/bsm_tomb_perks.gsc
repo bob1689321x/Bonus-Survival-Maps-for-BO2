@@ -1,25 +1,25 @@
-#include maps/mp/zombies/_zm;
-#include maps/mp/zombies/_zm_perks;
-#include maps/mp/_visionset_mgr;
-#include maps/mp/zombies/_zm_score;
-#include maps/mp/zombies/_zm_stats;
-#include maps/mp/_demo;
-#include maps/mp/zombies/_zm_audio;
-#include maps/mp/zombies/_zm_pers_upgrades_functions;
-#include maps/mp/zombies/_zm_power;
-#include maps/mp/zombies/_zm_laststand;
-#include maps/mp/zombies/_zm_weapons;
-#include maps/mp/zombies/_zm_utility;
-#include maps/mp/_utility;
-#include common_scripts/utility;
-#include maps/mp/zombies/_zm_magicbox;
+#include maps\mp\zombies\_zm;
+#include maps\mp\zombies\_zm_perks;
+#include maps\mp\_visionset_mgr;
+#include maps\mp\zombies\_zm_score;
+#include maps\mp\zombies\_zm_stats;
+#include maps\mp\_demo;
+#include maps\mp\zombies\_zm_audio;
+#include maps\mp\zombies\_zm_pers_upgrades_functions;
+#include maps\mp\zombies\_zm_power;
+#include maps\mp\zombies\_zm_laststand;
+#include maps\mp\zombies\_zm_weapons;
+#include maps\mp\zombies\_zm_utility;
+#include maps\mp\_utility;
+#include common_scripts\utility;
+#include maps\mp\zombies\_zm_magicbox;
 
 main()
 {
 	if(GetDvar("customMap") == "vanilla")
 		return;
-	replacefunc(maps/mp/zombies/_zm_perks::perk_machine_spawn_init, ::perk_machine_spawn_init);
-	replacefunc(maps/mp/zombies/_zm_perks::wait_for_player_to_take, ::wait_for_player_to_take);
+	replacefunc(maps\mp\zombies\_zm_perks::perk_machine_spawn_init, ::perk_machine_spawn_init);
+	replacefunc(maps\mp\zombies\_zm_perks::wait_for_player_to_take, ::wait_for_player_to_take);
 }
 
 wait_for_player_to_take( player, weapon, packa_timer, upgrade_as_attachment ) //changed 3/30/20 4:22 pm //checked matches cerberus output
@@ -49,8 +49,8 @@ wait_for_player_to_take( player, weapon, packa_timer, upgrade_as_attachment ) //
 		packa_timer stoploopsound( 0.05 );
 		if ( trigger_player == player ) //working
 		{
-			player maps/mp/zombies/_zm_stats::increment_client_stat( "pap_weapon_grabbed" );
-			player maps/mp/zombies/_zm_stats::increment_player_stat( "pap_weapon_grabbed" );
+			player maps\mp\zombies\_zm_stats::increment_client_stat( "pap_weapon_grabbed" );
+			player maps\mp\zombies\_zm_stats::increment_player_stat( "pap_weapon_grabbed" );
 			current_weapon = player getcurrentweapon();
 			/*
 /#
@@ -62,7 +62,7 @@ wait_for_player_to_take( player, weapon, packa_timer, upgrade_as_attachment ) //
 			*/
 			if ( is_player_valid( player ) && !player.is_drinking && !is_placeable_mine( current_weapon ) && !is_equipment( current_weapon ) && level.revive_tool != current_weapon && current_weapon != "none" && !player hacker_active() )
 			{
-				maps/mp/_demo::bookmark( "zm_player_grabbed_packapunch", getTime(), player );
+				maps\mp\_demo::bookmark( "zm_player_grabbed_packapunch", getTime(), player );
 				self notify( "pap_taken" );
 				player notify( "pap_taken" );
 				player.pap_used = 1;
@@ -75,15 +75,15 @@ wait_for_player_to_take( player, weapon, packa_timer, upgrade_as_attachment ) //
 					player thread do_player_general_vox( "general", "pap_arm2", 15, 100 );
 				}
 				weapon_limit = get_player_weapon_limit( player );
-				player maps/mp/zombies/_zm_weapons::take_fallback_weapon();
+				player maps\mp\zombies\_zm_weapons::take_fallback_weapon();
 				primaries = player getweaponslistprimaries();
 				if ( isDefined( primaries ) && primaries.size >= weapon_limit )
 				{
-					player maps/mp/zombies/_zm_weapons::weapon_give( upgrade_weapon );
+					player maps\mp\zombies\_zm_weapons::weapon_give( upgrade_weapon );
 				}
 				else
 				{
-					player giveweapon( upgrade_weapon, 0, player maps/mp/zombies/_zm_weapons::get_pack_a_punch_weapon_options( upgrade_weapon ) );
+					player giveweapon( upgrade_weapon, 0, player maps\mp\zombies\_zm_weapons::get_pack_a_punch_weapon_options( upgrade_weapon ) );
 					player givestartammo( upgrade_weapon );
 				}
 				if(upgrade_weapon == "staff_air_upgraded_zm" || upgrade_weapon == "staff_fire_upgraded_zm" || upgrade_weapon == "staff_lightning_upgraded_zm" || upgrade_weapon == "staff_water_upgraded_zm")
@@ -103,7 +103,7 @@ wait_for_player_to_take( player, weapon, packa_timer, upgrade_as_attachment ) //
 				player.restore_stock = undefined;
 				player.restore_max = undefined;
 				player.restore_clip_size = undefined;
-				player maps/mp/zombies/_zm_weapons::play_weapon_vo( upgrade_weapon );
+				player maps\mp\zombies\_zm_weapons::play_weapon_vo( upgrade_weapon );
 				return;
 			}
 		}
